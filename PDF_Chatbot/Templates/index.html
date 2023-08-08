@@ -1,0 +1,36 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the PDF Chatbot!</h1>
+    </header>
+    <main>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="pdf_file">
+            <button type="submit">Upload PDF</button>
+        </form>
+        
+        <div class="question-form">
+            <h2>Ask a Question:</h2>
+            <form action="/chat" method="post">
+                <input type="text" name="question" placeholder="Ask a question...">
+                <button type="submit">Ask</button>
+            </form>
+        </div>
+
+        {% if answer %}
+        <div class="answer">
+            <h3>Answer:</h3>
+            <textarea readonly>{{ answer }}</textarea>
+        </div>
+        {% endif %}
+    </main>
+</body>
+</html>
